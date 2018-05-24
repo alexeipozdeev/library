@@ -3,14 +3,18 @@
 namespace Service\DI;
 
 use Service\Db\Db;
+use Service\Logger\LoggerInterface;
 use Service\Request\Request;
+use Service\Scanner\ScannerInterface;
 
 
 /**
  * Class DI
  *
- * @method static Db            Db
- * @method static Request       Request
+ * @method static Db                    Db
+ * @method static Request               Request
+ * @method static LoggerInterface       Log
+ * @method static ScannerInterface      Scanner
  *
  */
 
@@ -26,11 +30,19 @@ class DI
         self::$service = [
             'Db' => [
                 'object' => '',
-                'class' => 'Core\\Services\\Db\\Db',
+                'class' => 'Service\\Db\\Db',
             ],
             'Request' => [
                 'object' => '',
-                'class' => 'Core\\Services\\Request\\Request',
+                'class' => 'Service\\Request\\Request',
+            ],
+            'Log' => [
+                'object' => '',
+                'class' => 'Service\\Logger\\LoggerInterface',
+            ],
+            'Scanner' => [
+                'object' => '',
+                'class' => 'Service\\Scanner\\ScannerInterface',
             ],
         ];
     }

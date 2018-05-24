@@ -12,8 +12,7 @@ class Disk extends AbstractModel
 
     protected static $_fields = [
         'id' => ['type' => FieldType::INT],
-        'isbn' => ['type' => FieldType::INT],
-        'author_full_name' => ['type' => FieldType::VARCHAR],
+        'singer' => ['type' => FieldType::VARCHAR],
         'title' => ['type' => FieldType::VARCHAR],
         'year' => ['type' => FieldType::INT],
     ];
