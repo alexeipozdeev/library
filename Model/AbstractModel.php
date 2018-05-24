@@ -68,7 +68,7 @@ class AbstractModel implements ModelInterface
     }
 
     /**
-     * Преобразует значение к указанному типу поля модели.
+     * РџСЂРµРѕР±СЂР°Р·СѓРµС‚ Р·РЅР°С‡РµРЅРёРµ Рє СѓРєР°Р·Р°РЅРЅРѕРјСѓ С‚РёРїСѓ РїРѕР»СЏ РјРѕРґРµР»Рё.
      *
      * @param string $name
      * @param mixed $value
