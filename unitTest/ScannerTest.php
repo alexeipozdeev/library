@@ -47,6 +47,15 @@ class ScannerTest extends TestCase
         $model = isset($fields->isbn) ? new Book() : new Disk();
         $status = $this->library->add($fields, $model);
 
-        $this->assertEquals(false, $status);
+        $this->assertEquals(true, $status);
+    }
+
+    /* Тест от сканера пришли данные диска */
+    public function testAddDisk() {
+        $fields = $this->scanner->dataReception('{"singer": "Никодимус А.Н.", "title": "Чтоб мы так же жили на селе", "year": 2010}');
+        $model = isset($fields->isbn) ? new Book() : new Disk();
+        $status = $this->library->add($fields, $model);
+
+        $this->assertEquals(true, $status);
     }
 }

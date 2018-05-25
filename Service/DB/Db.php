@@ -30,8 +30,8 @@ class Db
         try {
             $this->connection = new PDO(
                 'mysql:dbname=library;host=localhost',
-                'newuser',
-                '12345',
+                'root',
+                'gfhfvgfvgfv',
                 [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
             );
         } catch (PDOException $e) {
