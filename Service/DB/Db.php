@@ -3,6 +3,7 @@
 namespace Service\Db;
 
 
+use mysqli;
 use Service\DI\DI;
 use PDO;
 use PDOException;
@@ -28,9 +29,9 @@ class Db
     {
         try {
             $this->connection = new PDO(
-                'mysql:dbname=libraryDatabase;host=localhost',
-                'libraryUser',
-                'userPassword',
+                'mysql:dbname=library;host=localhost',
+                'newuser',
+                '12345',
                 [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
             );
         } catch (PDOException $e) {
