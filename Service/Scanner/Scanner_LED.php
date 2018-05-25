@@ -9,9 +9,9 @@ class Scanner_LED implements ScannerInterface
 
     /**
      * @param string $data
-     * @return array
+     * @return object
      */
-    public function dataReception(string $data): array
+    public function dataReception(string $data)
     {
         if($data === '') {
             $this->setErrors('No input data');
@@ -23,9 +23,9 @@ class Scanner_LED implements ScannerInterface
 
     /**
      * @param string $data
-     * @return array
+     * @return object
      */
-    private function parsingData(string $data): array
+    private function parsingData(string $data)
     {
         return json_decode($data);
     }

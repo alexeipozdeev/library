@@ -28,7 +28,7 @@ class Db
     {
         try {
             $this->connection = new PDO(
-                'mysql:host=localhost;dbname=libraryDatabase',
+                'mysql:dbname=libraryDatabase;host=localhost',
                 'libraryUser',
                 'userPassword',
                 [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
@@ -39,12 +39,14 @@ class Db
     }
 
     /**
+     * Биндим переменные в запрос
+     *
      * @param string $sql
      * @param array $fields
      * @return Db
      * @throws DbException
      */
-    public function prepare($sql, $fields = [])
+    public function prepare(string $sql, array $fields = []): Db
     {
         if($sql === '') {
             throw new DbException('No query is specified');
@@ -60,10 +62,12 @@ class Db
     }
 
     /**
+     * Выполняем запрос
+     *
      * @return Db
      * @throws DbException
      */
-    public function run()
+    public function run(): Db
     {
         if (!$this->stmt) {
             throw new DbException('There is no query to run');
@@ -74,10 +78,12 @@ class Db
     }
 
     /**
-     * @return array
+     * Возвращаем результат в виде объекта
+     *
+     * @return mixed
      * @throws DbException
      */
-    public function one()
+    public function one(): mixed
     {
         if (!$this->stmt) {
             throw new DbException('There is no data to output');
@@ -86,11 +92,14 @@ class Db
         return $this->stmt->fetchObject();
     }
 
+
     /**
+     * Возвращаем результат в виде ассоциативного массива
+     *
      * @return array
      * @throws DbException
      */
-    public function all()
+    public function all(): array
     {
         if (!$this->stmt) {
             throw new DbException('There is no data to output');
@@ -99,16 +108,19 @@ class Db
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
     /**
+     * Возвращаем иднтификатор вставленной строки в таблицу
+     *
      * @return int
      * @throws DbException
      */
-    public function lastInsertId():int
+    public function lastInsertId(): int
     {
         if (!$this) {
             throw new DbException('There is no data to output');
         }
 
-        return $this->connection->lastInsertId();
+        return (int) $this->connection->lastInsertId();
     }
 }

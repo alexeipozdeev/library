@@ -34,7 +34,7 @@ class AbstractModel implements ModelInterface
      * @param mixed $value
      * @throws ModelException
      */
-    public function __set(string $name, mixed $value): void
+    public function __set(string $name, $value): void
     {
         if (!isset(static::$_fields[$name])) {
             throw new ModelException('Attempt to assign a value to a non-public property "' . $name . '"');
@@ -53,10 +53,10 @@ class AbstractModel implements ModelInterface
     }
 
     /**
-     * @param array $data
+     * @param mixed $data
      * @return AbstractModel
      */
-    public function assign(array $data): AbstractModel
+    public function assign($data): AbstractModel
     {
         foreach ($data as $k => $v) {
             if (isset(static::$_fields[$k])) {
@@ -74,7 +74,7 @@ class AbstractModel implements ModelInterface
      * @param mixed $value
      * @return mixed
      */
-    private function cast(string $name, mixed $value): mixed
+    private function cast(string $name, $value)
     {
         $field = static::$_fields[$name];
         if (is_array($field)) {
@@ -110,7 +110,7 @@ class AbstractModel implements ModelInterface
      */
     public function setIsLoad(bool $value): void
     {
-        $this->isLoad = (bool)$value;
+        $this->isLoad = (bool) $value;
     }
 
     /**

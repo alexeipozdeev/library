@@ -6,6 +6,8 @@ namespace Service\Logger;
 class LoggingFile implements LoggerInterface
 {
     /**
+     * Пишем ошибку в лог ошибок
+     *
      * @param string $error
      */
     public function error(string $error): void
@@ -16,6 +18,11 @@ class LoggingFile implements LoggerInterface
         fclose($log);
     }
 
+    /**
+     * Пишем сообщение в лог информации
+     *
+     * @param string $info
+     */
     public function info(string $info): void
     {
         $file = $_SERVER['DOCUMENT_ROOT'] . '/log_scanner.txt';

@@ -2,14 +2,15 @@
 
 namespace Service\Scanner;
 
+
 interface ScannerInterface
 {
     /**
      * @param string $data
-     * @return array
+     * @return object
      * @throws ScannerException
      */
-    public function dataReception(string $data): array;
+    public function dataReception(string $data);
 
     /**
      * @return string

@@ -3,6 +3,7 @@
 use Model\Book\Book;
 use Model\Disk\Disk;
 use Service\DI\DI;
+use Service\Library\Library;
 use Service\Scanner\ScannerException;
 
 header("Content-type: text/html; charset=utf-8");
@@ -38,9 +39,9 @@ try {
         stateReturn(false, DI::Scanner()->getErrors());
     }
 
-    /* если в данных есть поле ISBN, значит создаем объект книги иначе диска */
-    $model = $fields['isbn'] ? new Book() : new Disk();
-    $model->assign($fields)->save();
+    $model = isset($fields->isbn) ? new Book() : new Disk();
+    $library = new Library();
+    $library->add($fields, $model);
 
     /* сообщаем сканеру об успешной операции */
     stateReturn(true, 'Added successfully "' . $model->title . '" ID: ' . $model->id);

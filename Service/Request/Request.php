@@ -5,14 +5,25 @@ namespace Service\Request;
 
 class Request
 {
-    Const PREFIX_COOKIE = 'library_';
-
-    public function inGet($name, $default = false)
+    /**
+     * Проверяем просто наличие переменной
+     *
+     * @param string $name
+     * @return bool
+     */
+    public function inGet(string $name): bool
     {
-        return isset($_GET[$name]) || isset($_POST[$name]) ? true : $default;
+        return isset($_GET[$name]) || isset($_POST[$name]) ? true : false;
     }
 
-    public function get($name, $default = null)
+    /**
+     * Получаем значение переменной
+     *
+     * @param string $name
+     * @return mixed
+     * @throws RequestException
+     */
+    public function get(string $name): mixed
     {
         if(empty($name)) {
             throw new RequestException('Request variable name not specified');
@@ -23,14 +34,7 @@ class Request
         } elseif (isset($_POST[$name])) {
             return $_POST[$name];
         } else {
-            return $default;
+            return null;
         }
-    }
-
-    public function getInt($name, $default = null)
-    {
-        $value = $this->get($name);
-
-        return is_numeric($value) ? (int) $value : $default;
     }
 }

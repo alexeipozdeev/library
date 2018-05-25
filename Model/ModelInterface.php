@@ -8,7 +8,7 @@ interface ModelInterface
      * @param array $data
      * @return AbstractModel
      */
-    public function assign(array $data): AbstractModel;
+    public function assign($data): AbstractModel;
 
     /**
      * @return bool

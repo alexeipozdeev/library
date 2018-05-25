@@ -38,11 +38,11 @@ class DI
             ],
             'Log' => [
                 'object' => '',
-                'class' => 'Service\\Logger\\LoggerInterface',
+                'class' => 'Service\\Logger\\LoggingFile',
             ],
             'Scanner' => [
                 'object' => '',
-                'class' => 'Service\\Scanner\\ScannerInterface',
+                'class' => 'Service\\Scanner\\Scanner_LED',
             ],
         ];
     }
@@ -51,10 +51,10 @@ class DI
      * Получаем сервис из контейнера
      *
      * @param string $name
-     * @return DI
+     * @return object
      * @throws DIException
      */
-    private static function get($name)
+    private static function get(string $name)
     {
         self::init();
 
@@ -75,14 +75,13 @@ class DI
     }
 
     /**
-     * Вызов сервиса по имени.
+     * Ловим вызов сервиса по имени.
      *
      * @param string $name
-     * @param mixed  $arguments
-     *
+     * @param $arguments
      * @return object
      */
-    public static function __callStatic($name, $arguments)
+    public static function __callStatic(string $name, $arguments)
     {
         return self::get($name);
     }
